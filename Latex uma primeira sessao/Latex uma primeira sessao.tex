@@ -1,0 +1,187 @@
+% !TeX spellcheck = pt_BR
+\documentclass[12pt]{article}
+%
+\usepackage[portuges]{babel}	% texto em portugues
+\usepackage[T1]{fontenc}		% reconhecer carateres especiais
+\usepackage[latin1]{inputenc}	% reconhecer carateres especiais
+\usepackage{indentfirst}		% indentar o primeiro paragrafo
+\usepackage{amsmath}			% comandos para estruturas matemática feito pela AMS - American Mathematical Society
+\usepackage{graphicx}
+
+\newtheorem{teorema}{Teorema}
+%\newtheorem{definição}{Definição}		%define o ambiente def que aparece no texto como Definição
+
+%\makeindex
+
+\begin{document}
+
+\title{\LaTeX\\ Uma Sessão introdutória}
+\author{José Matos}
+\date{\today}
+\maketitle
+
+\begin{abstract}
+	Pretende-se com esta sessão apresentar o sistema de preparação de documentos \LaTeX. O curso consiste de uma sessão prática em que os participantes elaboram um texto em \LaTeX. Será introduzido o sistema \LaTeX, as suas características e funcionalidades principais, os tipos elementares de documentos e a sua estrutura, os comandos básicos e alguns pacotes de comandos mais utilizados. Será utilizado o editor TeXstudio com o compilador MiKTeX.
+\end{abstract}
+
+\section{Introdução}\label{Introd}
+
+O \LaTeX\ é um sistema de preparação de documentos de alta qualidade. É especialmente indicado para texto técnico ou científico de complexidade média ou elevada \cite{LL94}. 
+
+Ao contrário de um processador de texto, o \LaTeX\ liberta o utilizador das preocupações de formato, permitindo-lhe concentrar-se no conteúdo do texto. Com esta filosofia resulta, geralmente, texto com melhor formato e melhor conteúdo. Frequentemente com menos esforço do autor.
+
+\subsection{Estrutura do texto}\label{Estrut}
+ 
+De forma semi-automática, é possível formatar texto para publicações em artigos científicos, relatórios técnicos, livros e apresentação de slides.
+
+A produção de todo o texto desta página não necessitou de nenhuma opção de formato, para além de uma opção global de tamanho da fonte utilizada. Todas as opções de texto, centrado, justificado ou indentado, bem como as opções de formato e tamanho relativo de fonte foram assumidas pelo sistema. De forma automática, são escolhidos os tamanhos e tipos de fonte para títulos, cabeçalhos, textos, tabelas, fórmulas e blocos especiais de texto, como se exemplifica no Teorema \ref{pitagoras}.
+
+\begin{teorema}\label{pitagoras}
+	A caminho de Siracusa dizia Pitágoras aos seus netos: O quadrado da hipotenusa é igual à soma dos quadrados dos catetos.
+	\[ h^2=a^2+b^2 \]
+\end{teorema}
+
+A numeração das secções e subsecções, bem como das fórmulas, dos teoremas e de todos os blocos especiais do documento, é também automática.
+
+\section{Referências}
+
+\subsection{Referências cruzadas}
+
+Apenas utilizando chaves de referência, é possível referir outras partes do texto, de forma idêntica quer se trate de uma secção anterior, a secção \ref{Introd}, de uma subsecção \ref{Estrut} ou da próxima secção \ref{Formulas}. A referência à Tabela \ref{Ranking} e à Figura \ref{MN} é também efetuada com recurso a chaves de referência e de forma totalmente independente da localização. Da mesma forma podemos fazer referência ao conteúdo da página \pageref{Introd}, da fórmula \eqref{t_Student}, do Teorema \ref{pitagoras}, da nota de rodapé\footnote{Fernando Pessoa não utilizava \LaTeX, caso contrário, quando escreveu que «Todas as cartas de amor são ridículas», teria acrescentado que com \LaTeX\ têm bom aspecto.} ou de muitas outras estruturas do texto.
+
+\begin{table}[thb]
+	\caption{Distribuições de probabilidade\cite{PG04}}
+	\begin{tabular}{|l|l|l|}\hline
+		Notação & $f(x)$ & $F(x)$ \\ \hline\hline
+		$U(a,b)$ & $f(x)=\begin{cases} \frac{1}{b-a+1}, x=a:b \\ 0, x\neq a:b \end{cases}$ & $F(x)=\left\{\begin{array}{lr}
+				 0 & x<a\\ 
+				 \frac{\lfloor x \rfloor -a+1}{b-a+1} & x=a:b \\ 
+				 1 & x>b \end{array}\right.$ \\ \hline
+		$N(\mu,\sigma^2)$ & $f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}$ & $F(x)=\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{x}e^{-\frac{1}{2}(\frac{t-\mu}{\sigma})^2}\mathop{dt}$ \\ \hline		
+	\end{tabular}
+	\label{Ranking}
+\end{table}
+
+%\begin{figure}[bht]
+%	\vspace{-1cm}
+%	\includegraphics[width=0.8\textwidth, angle=90]{DcaWhittaker.pdf}
+%	\vspace{-2cm}
+%	\caption{Aplicação do Método de Whittaker}
+%	\label{MN}
+%\end{figure} 
+
+As etiquetas utilizadas para referência são sempre tratadas como relativas à posição final no texto e não à posição absoluta que ocupam quando são introduzidas no texto.
+
+
+\subsection{Referências bibliográficas}
+Nem sempre é fácil creditar o autor original de um resultado, como é o caso do Teorema \ref{pitagoras}, cuja atribuição a Pitágoras é contestada por diversos autores \cite{AB13}.
+
+A creditação de resultados a outros trabalhos, pode fazer-se com recurso a referências bibliográficas. Em \LaTeX\ existem duas formas básicas de gerir o conjunto de referências bibliográficas a incluir no documento: ou utilizando um ficheiro \emph{.bib} com uma base de dados de referências juntamente com o comando \emph{bibtex}\cite{Osborne19}; ou listando os item bibliográficos no final do documento e com sintaxe própria.
+
+
+\section{Fórmulas Matemáticas}\label{Formulas}
+
+Fórmulas matemáticas podem incluir-se no texto de duas formas básicas: ou inseridas na linha $e^x\approx 1+x+x^2/2+x^3/6$ ou destacadas do texto
+\[
+e^x=\sum_{k=0}^{\infty} \frac{1}{k!}x^k
+\]
+
+Atribuindo uma chave de referência, as fórmulas em destaque podem ser referidas e citadas no texto
+\begin{equation}\label{t_Student}
+ f_X(x)=\frac{1}{2^{\frac{\nu}{2}}\sqrt{2\pi\nu}\mathop{\Gamma(\frac{\nu}{2})}}\left(1+\frac{x^2}{\nu}\right)^{-\frac{\nu+1}{2}}\int_{0}^{+\infty}u^{\frac{\nu-1}{2}}
+e^{-\frac{u}{2}}\mathop{du}
+\end{equation}
+
+A construção de fórmulas é modular. À semelhança da composição de funções, pode construir-se uma fórmula compondo uma sucessão de módulos elementares, como se ilustra em \eqref{pi} com uma fração contínua \cite{Stern1883}.
+\begin{equation}\label{pi}
+\frac{\pi}{2} = 1- \frac{1}{3-\frac{6}{1-\frac{2}{3-\frac{20}{1-\frac{12}{3-\frac{42}{1-\frac{30}{3-\cdots}}}}}}}
+\end{equation} 
+
+\newpage
+\section{Exs Práticos}
+
+\subsection{Formulas}
+
+$\exists^1$ um aluno que se recorda da formula resolvente para a equação de 2º grau $ax^2+bx+c=0$
+\[
+	x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+\]
+
+Podíamos usar também o ambiente equation
+\begin{equation} \label{Formula Resolvente}
+		x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+\end{equation}
+
+Mas se quiser-mos sem numeração
+\begin{equation*}
+	x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+\end{equation*}
+
+Neste texto temos uma referência à \eqref{Formula Resolvente}
+
+
+\subsection{Tabelas}
+\begin{table}[thb]
+	\begin{tabular}{|l|l|l|}\hline
+		Notação & $f(x)$ & $F(x)$ \\ \hline\hline
+		$U(a,b)$ & $f(x)=\begin{cases} \frac{1}{b-a+1}, x=a:b \\ 0, x\neq a:b \end{cases}$ & $F(x)=\left\{\begin{array}{lr}
+		0 & x<a\\ 
+		\frac{\lfloor x \rfloor -a+1}{b-a+1} & x=a:b \\ 
+		1 & x>b \end{array}\right.$ \\ \hline
+		$N(\mu,\sigma^2)$ & $f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}$ & $F(x)=\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{x}e^{-\frac{1}{2}(\frac{t-\mu}{\sigma})^2}\mathop{dt}$ \\ \hline		
+	\end{tabular}
+	\caption{Distribuições de probabilidade\cite{PG04}}
+	\label{Ranking2}
+\end{table}
+
+\begin{tabular}{|c|c|c|c|}
+	\hline 
+	dia & temperatura (ºC) & pressão (Atm) & distância (km) \\ 
+	\hline 
+	1& 12 & 1.2 & 2.3 \\ 
+	\hline 
+	2& $\sqrt[3]{143}$ & $\frac{22}{23}$ & $\arccos(2.3*\pi/5)$ \\ 
+	\hline 
+	3& 11 & 9 & $\left[ \begin{array}{cc}
+		Mae & Pai \\ 
+		12 & -3
+	\end{array} \right] $ \\ 
+	\hline 
+	$2^2$& 22 & 11 & 50 \\ 
+	\hline 
+\end{tabular} 
+
+
+\newpage
+%
+\begin{thebibliography}{99}
+%
+
+\bibitem{LL94} 
+Lamport,~L.:
+\newblock A Document Preparation System, Addison-Wesley Publishing Company, 2nd edition, 1994.
+	
+\bibitem{PG04}
+Pedrosa,~A.C., Gama, ~S.M.A.:
+\newblock Introdução Computacional à {P}robabilidade e {E}statística.
+\newblock Porto Editora, 2004
+	
+\bibitem{Osborne19}
+Osborne,~M.J.: 
+\newblock using bibtex: a short guide,
+https://www.economics.\-utoronto.ca/osborne/latex/BIBTEX.HTM,
+consultado em 12 Março 2019
+
+\bibitem{AB13}
+Barry,~A.: 
+\newblock Was Pythagoras the First to Discover Pythagoras's Theorem?,
+\newblock SIAM News, May 01, 2013, https://sinews.siam.org/Details-Page/was-pythagoras-the-first-to-discover-pythagorass-theorem
+
+\bibitem{Stern1883}
+Stern,~M.:
+\newblock Theorie der Kettenbrüche und ihre Anwendung. (Fortsetzung), 
+\newblock Journal für die reine und angewandte Mathematik, 1833(10), pp. 154-166. Obtido a 13 Mar. 2019, de doi:10.1515/crll.1833.10.154
+\end{thebibliography}
+
+
+\end{document}
